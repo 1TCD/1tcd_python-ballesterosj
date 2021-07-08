@@ -1,0 +1,57 @@
+'''
+  File: nz_quiz.py
+  Author: Jo-Lo Ballesteros
+  Created: 30/06/2021
+  Purpose: General knowledge quiz of New Zealand
+'''
+#I am using replit to create this code
+
+#the questions will be chosen at random
+import random
+
+#make lists for trivia questions about new zealand
+#one for true, another for False
+TRUE_QUESTIONS = ['Denis Glover wrote the poem The Magpies', 
+'God Save the King was New Zealand’s national anthem up to and during WWII', 
+'Phar Lap was a New Zealand born horse who won the Melbourne Cup', 
+'Queen Victoria was the reigning monarch of England at the time of the Treaty', 
+'Te Rauparaha is credited with intellectual property rights of Kamate!',
+'The All Blacks are New Zealand’s top rugby team',
+'Thomas Bracken wrote the words to the national anthem God Defend New Zealand.',
+'Aotearoa commonly means Land of the Long White Cloud']
+
+FALSE_QUESTIONS = ['Kiri Te Kanawa is a Wellington-born opera singer',
+'Split Enz are a well-known rock group from Australia who became very famous in New Zealand during the 80s',
+'The Treaty of Waitangi was signed at Parliament',
+'The Treaty of Waitangi was signed in 1901',
+]
+
+#put the questions into one constant
+#to help to randomise the question
+QUESTIONS = [FALSE_QUESTIONS, TRUE_QUESTIONS]
+
+#this randomises the question chosen
+#first the lists are randomised and either true or false list is chosen
+#then a question from the chosen list is used
+random_question = random.choice(random.choices(QUESTIONS, weights=map(len, QUESTIONS))[0])
+print(random_question)
+
+#ask the user whether they think the statement is true or false
+user_answer = input('Is this true or false? (Type t/f) \n>> ').lower()
+#check what the user answered
+
+if user_answer == 't':
+  #check if user answered t on true question
+  if random_question in TRUE_QUESTIONS:
+    print('You are correct')
+  #check if user answered t on false question
+  elif random_question in FALSE_QUESTIONS:
+    print('The question was false')
+
+elif user_answer == 'f':
+  #check if user answered f on true question
+  if random_question in TRUE_QUESTIONS:
+    print('The question was true')
+#check if user answered t on false question
+  elif random_question in FALSE_QUESTIONS:
+    print('You are correct')
