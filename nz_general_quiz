@@ -30,17 +30,16 @@ FALSE_QUESTIONS = ['Kiri Te Kanawa is a Wellington-born opera singer',
 #to help to randomise the question
 QUESTIONS = [FALSE_QUESTIONS, TRUE_QUESTIONS]
 
-#this randomises the question chosen
-#first the lists are randomised and either true or false list is chosen
-#then a question from the chosen list is used
-#this isn't my code and is subject to change
-random_question = random.choice(random.choices(QUESTIONS, weights=map(len, QUESTIONS))[0])
-print(random_question)
+#this randomises the questions
+#for the program to ask the user
+random_question = random.choice(random.choice(QUESTIONS))
 
+#print the randomly generated question
+print(random_question)
 #ask the user whether they think the statement is true or false
 user_answer = input('Is this true or false? (Type t/f) \n>> ').lower()
+  
 #check what the user answered
-
 if user_answer == 't':
   #check if user answered t on true question
   if random_question in TRUE_QUESTIONS:
@@ -53,6 +52,6 @@ elif user_answer == 'f':
   #check if user answered f on true question
   if random_question in TRUE_QUESTIONS:
     print('The question was true')
-#check if user answered t on false question
+  #check if user answered t on false question
   elif random_question in FALSE_QUESTIONS:
     print('You are correct')
