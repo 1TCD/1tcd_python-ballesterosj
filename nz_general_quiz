@@ -33,6 +33,7 @@ QUESTIONS = [FALSE_QUESTIONS, TRUE_QUESTIONS]
 #this randomises the question chosen
 #first the lists are randomised and either true or false list is chosen
 #then a question from the chosen list is used
+#this isn't my code and is subject to change
 random_question = random.choice(random.choices(QUESTIONS, weights=map(len, QUESTIONS))[0])
 print(random_question)
 
