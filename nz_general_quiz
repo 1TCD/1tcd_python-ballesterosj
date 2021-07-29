@@ -26,16 +26,19 @@ FALSE_QUESTIONS = ['Kiri Te Kanawa is a Wellington-born opera singer',
 'The Treaty of Waitangi was signed in 1901',
 ]
 
-#put the questions into one constant
+#put the question lists into one constant
 #to help to randomise the question
 QUESTIONS = [FALSE_QUESTIONS, TRUE_QUESTIONS]
 
 #this randomises the questions
+#the first random.choice randomises the list to choose from
+#then from that chosen list, another random.choice chooses a question
 #for the program to ask the user
 random_question = random.choice(random.choice(QUESTIONS))
 
 #print the randomly generated question
 print(random_question)
+
 #ask the user whether they think the statement is true or false
 user_answer = input('Is this true or false? (Type t/f) \n>> ').lower()
   
