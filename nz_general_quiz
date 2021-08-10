@@ -30,31 +30,69 @@ FALSE_QUESTIONS = ['Kiri Te Kanawa is a Wellington-born opera singer',
 #to help to randomise the question
 QUESTIONS = [FALSE_QUESTIONS, TRUE_QUESTIONS]
 
-#this randomises the questions
-#the first random.choice randomises the list to choose from
-#then from that chosen list, another random.choice chooses a question
-#for the program to ask the user
-random_question = random.choice(random.choice(QUESTIONS))
+def quiz():
+  #this is a list where played questions will be added
+  #this is so that questions won't repeat
+  played_question = []
 
-#print the randomly generated question
-print(random_question)
+  for x in range(0,5):
 
-#ask the user whether they think the statement is true or false
-user_answer = input('Is this true or false? (Type t/f) \n>> ').lower()
-  
-#check what the user answered
-if user_answer == 't':
-  #check if user answered t on true question
-  if random_question in TRUE_QUESTIONS:
-    print('You are correct')
-  #check if user answered t on false question
-  elif random_question in FALSE_QUESTIONS:
-    print('The question was false')
+    #this randomises the questions
+    #the first random.choice randomises the list to choose from
+    #then from that chosen list, another random.choice chooses a question
+    #for the program to ask the user
+    random_question = random.choice(random.choice(QUESTIONS))
 
-elif user_answer == 'f':
-  #check if user answered f on true question
-  if random_question in TRUE_QUESTIONS:
-    print('The question was true')
-  #check if user answered t on false question
-  elif random_question in FALSE_QUESTIONS:
-    print('You are correct')
+    #the randomised question will be checked if it is in
+    #the list of played questions
+    #if it is the question will be randomised again
+    while random_question in played_question: 
+      random_question = random.choice(random.choice(QUESTIONS))
+    
+    #print the randomly generated question
+    print(random_question)
+
+    #ask the user whether they think the statement is true or false
+    user_answer = input('Is this true or false? (Type t/f)\n>> ').lower()
+
+    #check what the user answered
+    if user_answer == 't':
+      #check if user answered t on true question
+      if random_question in TRUE_QUESTIONS:
+        print('You are correct \n')
+      #check if user answered t on false question
+      elif random_question in FALSE_QUESTIONS:
+        print('The question was false \n')
+
+    elif user_answer == 'f':
+      #check if user answered f on true question
+      if random_question in TRUE_QUESTIONS:
+        print('The question was true \n')
+      #check if user answered t on false question
+      elif random_question in FALSE_QUESTIONS:
+        print('You are correct \n')
+        
+    #when a question has been answered,
+    #the question will be added to a list
+    #a list of played qusetions
+    played_question.append(random_question)
+
+  #at the end of the quiz,
+  #the list of played questions will be cleared
+  #so that those questions can be played again
+  played_question.clear()
+
+def main():
+  choice = ''
+  while choice != '9':
+    print('''New Zealand General Knowledge Quiz
+Type a number to enter
+1. Play Quiz
+9. Exit''')
+    choice = input('>> ')
+    if choice == '1':
+      quiz()
+
+  print('See you next time')
+
+main()
