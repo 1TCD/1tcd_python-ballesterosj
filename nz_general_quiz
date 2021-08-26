@@ -6,6 +6,7 @@
 '''
 #I am using replit to create this code
 
+#I am importing the random library
 #the questions will be chosen at random
 import random
 
@@ -35,6 +36,10 @@ def quiz():
   #this is so that questions won't repeat
   played_question = []
 
+  #this is the scoring system
+  #this will increase by 1 for every correct answer
+  quiz_score = 0
+
   for x in range(0,5):
 
     #this randomises the questions
@@ -60,6 +65,10 @@ def quiz():
       #check if user answered t on true question
       if random_question in TRUE_QUESTIONS:
         print('You are correct \n')
+        #if the user got the question right
+        #add 1 point to their score
+        #this is repeated when user answers correctly on false question
+        quiz_score = quiz_score + 1
       #check if user answered t on false question
       elif random_question in FALSE_QUESTIONS:
         print('The question was false \n')
@@ -71,28 +80,106 @@ def quiz():
       #check if user answered t on false question
       elif random_question in FALSE_QUESTIONS:
         print('You are correct \n')
+        quiz_score = quiz_score + 1
         
     #when a question has been answered,
     #the question will be added to a list
     #a list of played qusetions
     played_question.append(random_question)
 
+  #this adds the final score to the total score
+  #the total score can be displayed in main menu
+  #this global attribute is required
+  #as variables in different functions cannot be accessed though I wanted to avoid it
+  global total_quiz_score
+  total_quiz_score = 0
+  total_quiz_score = total_quiz_score + quiz_score
+
   #at the end of the quiz,
   #the list of played questions will be cleared
   #so that those questions can be played again
   played_question.clear()
 
+  #print the users final score
+  print('Your score is {0} out of {1} \n'.format(quiz_score, '5'))
+
+#marathon mode is pretty much identical to quiz mode
+#the for loop is the only difference
+#it gets the amount of quesitons from both lists and repeats it by that amount
+#this will get the quiz to play exactly every question
+def marathon():
+
+  played_question = []
+  
+  marathon_score = 0
+
+  #this loops the quiz to the exact amount of questions there answered
+  #so that all questions are played without missing one
+  for x in range(0, len(TRUE_QUESTIONS) + len(FALSE_QUESTIONS)):
+
+    random_question = random.choice(random.choice(QUESTIONS))
+    while random_question in played_question: 
+      random_question = random.choice(random.choice(QUESTIONS))
+    print(random_question)
+
+    user_answer = input('Is this true or false? (Type t/f)\n>> ').lower()
+
+    if user_answer == 't':
+      if random_question in TRUE_QUESTIONS:
+        print('You are correct \n')
+        marathon_score = marathon_score + 1
+      elif random_question in FALSE_QUESTIONS:
+        print('The question was false \n')
+
+    elif user_answer == 'f':
+      if random_question in TRUE_QUESTIONS:
+        print('The question was true \n')
+      elif random_question in FALSE_QUESTIONS:
+        print('You are correct \n')
+        marathon_score = marathon_score + 1
+        
+    played_question.append(random_question)
+
+  global total_marathon_score
+  total_marathon_score = 0
+  total_marathon_score = total_marathon_score + marathon_score
+
+  played_question.clear()
+
+  #if you want to add more questions,
+  #the score will update itself to display the correct amount of questions
+  print('Your score is {0} out of {1} \n'.format(marathon_score, len(TRUE_QUESTIONS) + len(FALSE_QUESTIONS)))
+
 def main():
+  #until the user types 9 to exit the program,
+  #the user has options to type 1, 2, 3 or 4
+  #each number corresponding to a different mode
   choice = ''
   while choice != '9':
     print('''New Zealand General Knowledge Quiz
 Type a number to enter
-1. Play Quiz
+1. Play 5 Questions
+2. Play Marathon
+
+3. 5 Questions Score
+4. Marathon Score
+
 9. Exit''')
     choice = input('>> ')
     if choice == '1':
       quiz()
-
+    elif choice == '2':
+      marathon()
+    elif choice == '3':
+      try:
+        print('Your total quiz score is {} \n'.format(total_quiz_score))
+      except:
+        print('You do not have a score in 5 Questions yet!\n')
+    elif choice == '4':
+      try:
+        print('Your total marathon score is {} \n'.format(total_marathon_score))
+      except:
+        print('You do not have a score in Marathon yet!\n')
   print('See you next time')
 
 main()
