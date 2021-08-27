@@ -168,7 +168,7 @@ def main():
     print('''New Zealand General Knowledge Quiz
 Type a number to enter
 1. Play 5 Questions
-2. Play Marathon
+2. Play All Questions
 
 3. 5 Questions Score
 4. Marathon Score
@@ -181,12 +181,12 @@ Type a number to enter
       marathon()
     elif choice == '3':
       try:
-        print('Your total quiz score is {} \n'.format(total_quiz_score))
+        print('Your total score in 5 Questions is {} \n'.format(total_quiz_score))
       except:
         print('You do not have a score in 5 Questions yet!\n')
     elif choice == '4':
       try:
-        print('Your total marathon score is {} \n'.format(total_marathon_score))
+        print('Your total score All Questions is {} \n'.format(total_marathon_score))
       except:
         print('You do not have a score in Marathon yet!\n')
   print('See you next time')
