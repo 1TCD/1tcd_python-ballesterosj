@@ -188,7 +188,7 @@ Type a number to enter
       try:
         print('Your total score All Questions is {} \n'.format(total_marathon_score))
       except:
-        print('You do not have a score in All Quesions yet!\n')
+        print('You do not have a score in All Questions yet!\n')
   print('See you next time')
 
 main()
