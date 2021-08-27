@@ -62,7 +62,7 @@ def quiz():
 
     #this while loop is to make sure when the user enters anything invalid
     #it will ask the user the same question again
-    while user_answer != "t" and "f":
+    while user_answer != "t" and != "f":
       print(random_question)
       user_answer = input('Is this true or false? (Type t/f and Enter to submit)\n>> ').lower()
 
@@ -129,7 +129,7 @@ def marathon():
     print(random_question)
 
     user_answer = input('Is this true or false? (Type t/f and Enter to submit)\n>> ').lower()
-    while user_answer != "t" and "f":
+    while user_answer != "t" and != "f":
       print(random_question)
       user_answer = input('Is this true or false? (Type t/f and Enter to submit)\n>> ').lower()
 
