@@ -171,7 +171,7 @@ Type a number to enter
 2. Play All Questions
 
 3. 5 Questions Score
-4. Marathon Score
+4. All Questions Score
 
 9. Exit''')
     choice = input('>> ')
